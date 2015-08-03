@@ -12,6 +12,6 @@
 			,"slim/slim": 			"2.*"
 			,"guzzlehttp/guzzle":	"5.3.*"
 
-		}
+	}
 	
 }
