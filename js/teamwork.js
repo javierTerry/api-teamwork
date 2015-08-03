@@ -1,6 +1,11 @@
 $("document").ready(function() {
 	var company = "masnegocio";
+	var company = "personal69";
+	
+	
 	var key = "nose757paper";
+	var key = "cat952yellow";
+	
 
 	var response = false;
 	

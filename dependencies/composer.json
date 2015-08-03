@@ -1,0 +1,17 @@
+{
+	"repositories": [
+        {
+            "url": "https://github.com/javierTerry/MNTrait.git",
+            "type": "git"
+        }
+        
+    ],
+	"require": {
+			"phpunit/phpunit":		"4.7.*"	
+			,"javierTerry/MNTrait":	"1.0"
+			,"slim/slim": 			"2.*"
+			,"guzzlehttp/guzzle":	"5.3.*"
+
+		}
+	
+}
