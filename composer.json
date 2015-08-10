@@ -1,0 +1,21 @@
+{
+    "name": "javierTerry/MNTrait",
+    "description": "Tratis de uso general como un response, metodos magicos",
+    "license": "MIT",
+    "keywords": ["masnegocio", "trait"],
+    "authors": [
+        {
+            "name": "Christian Hernandez",
+            "email": "javierv31@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MNTrait\\Comun\\": "src/Comun/"
+        }
+    }
+}
