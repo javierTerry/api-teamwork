@@ -2,8 +2,8 @@
  
 
 class MyTraitTest extends PHPUnit_Framework_TestCase {
- 	use MNTrait\Comun\Response;
-	use MNTrait\Comun\MagicMethod;
+ 	use Masnegocio\Comun\Response;
+
 	
 	private $isMagic = false;
  	
@@ -12,7 +12,7 @@ class MyTraitTest extends PHPUnit_Framework_TestCase {
 		
  	}
 	
-	public function testMagicMethod(){
+	public function magicMethod(){
 		
 		$this -> __set("isMagic", true);
  		$this -> assertTrue($this -> isMagic);

@@ -1,21 +1,38 @@
 {
-    "name": "javierTerry/MNTrait",
-    "description": "Tratis de uso general como un response, metodos magicos",
+    "name": "javierTerry/Teamwork",
+    "description": "La descripcion de tu mini proyeto",
     "license": "MIT",
-    "keywords": ["masnegocio", "trait"],
+    "keywords": ["masnegocio", "skeleton", "composer"],
     "authors": [
         {
             "name": "Christian Hernandez",
             "email": "javierv31@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+    	"php"							: ">=5.4"
+		,"javierTerry/MNTrait"			: "dev-master"
+		,"guzzlehttp/guzzle"			: "5.*"
+		,"myabakus/teamworkpm"			: "dev-master"
+    },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit"				: "4.0.*"
+        ,"slim/slim"					: "2.*"
+        ,"phpdocumentor/phpdocumentor"	: "2.*"
     },
     "autoload": {
         "psr-4": {
-            "MNTrait\\Comun\\": "src/Comun/"
+            "Masnegocio\\teamwork\\"		: "src/"
         }
     }
+    ,"repositories": [  
+		    {
+        		"type"      		: "git",
+        		"url" 				: "https://github.com/javierTerry/MNTrait.git"
+    		}
+    		,{
+        		"type"      		: "git",
+        		"url" 				: "https://github.com/loduis/TeamWorkPmPhpApi.git"
+    		}
+	]    
 }
