@@ -1,9 +1,7 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
-/*
- * 
- */
-class Compania {
+
+class Milestone {
 	use \MNTrait\Comun\MagicMethod;
 	use \MNTrait\Comun\Response;
 	
@@ -19,15 +17,16 @@ class Compania {
     	
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
-    		$request = \TeamWorkPm\Factory::build('company');
-			$compania = json_decode($request -> getAll()) ;
-			if ( count($compania) > 0){
-				foreach ($compania as $key => $objeto) {
-					$companiaDTO = new CompaniaDTO();
-					foreach ($companiaDTO as $keyB => $valueB) {
-						$companiaDTO -> $keyB = $objeto -> $keyB;
+    		$request = \TeamWorkPm\Factory::build('milestone');
+			$milestone = (string) $request -> getAll() ;
+			error_log(print_r($milestone,true));
+			if ( count($project) > 0){
+				foreach ($project as $key => $objeto) {
+					$projectDTO = new ProjectCategorieDTO();
+					foreach ($projectDTO as $keyB => $valueB) {
+						$projectDTO -> $keyB = $objeto -> $keyB;
 					}
-					$this -> response["body"][] = $companiaDTO;
+					$this -> response["body"][] = $projectDTO;
 				}
 				
 			}
@@ -44,9 +43,9 @@ class Compania {
 }
 
 /**
- * CompaniaDTO
+ * ProjectCategorieDTO
  */
-class CompaniaDTO {
+class ProjectCategorieDTO {
 	
 	public $name 		="";
 	public $industry	= "";

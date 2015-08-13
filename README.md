@@ -30,17 +30,18 @@ Los recursos disponibles son:
 * GET /companies.json
 * GET /people.json
 * GET /projectCategories.json
-* GET /tags.json
 * GET /projects.json
-* GET /expenses.json
-* GET GET /milestones.json?find=[all|completed|incomplete|late|upcoming]
-* GET /projects/{project_id}/tasklists.json
-* GET /tasks.json
 * GET /time_entries.json
 
 
+Los recursos pendientes son:
+* GET /milestones.json?find=[all|completed|incomplete|late|upcoming]
+* GET /projects/{project_id}/tasklists.json
+* GET /tags.json
+* GET /expenses.json
+* GET /tasks.json
 
-GET /companies.json
+
 ----------------------------------
 Regresa la lista de las compañias disponibles 
 
