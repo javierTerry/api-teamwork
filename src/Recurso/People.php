@@ -18,8 +18,7 @@ class People {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('company');
-			$people = (string) $request -> getAll() ;
-			error_log(print_r($people,true));
+			$people = $request -> getAll() ;
 			if ( count($people) > 0){
 				foreach ($people as $key => $objeto) {
 					$peopleDTO = new PeopleDTO();
@@ -29,6 +28,8 @@ class People {
 					$this -> response["body"][] = $peopleDTO;
 				}
 				
+			} else {
+				$this -> response['body'] = array();
 			}
 			$this -> response["message"] = "Listado de companias completo";
 			$this -> response["status"] = "exito";
@@ -54,11 +55,6 @@ class PeopleDTO {
 	public $countrycode	= "";
 	public $cid			= "";
 	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

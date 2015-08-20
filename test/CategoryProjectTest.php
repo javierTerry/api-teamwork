@@ -7,7 +7,7 @@ class CategoryProjectTest extends PHPUnit_Framework_TestCase {
 	private $variable = "Hola Mundo";
 	
 	/*
-	 * @test
+	 * 
 	 */
 	public function testObtener(){
 		$autorization = sprintf("BASIC  + window.btoa(%s + :xxx)","asdasdasdas");
@@ -21,8 +21,8 @@ class CategoryProjectTest extends PHPUnit_Framework_TestCase {
 		$project -> __set("apiKey", "cat952yellow");
 		//var_dump($project -> __get("response"));
 		$project -> obtener();
-		error_log(print_r(json_encode($project -> __get("response")),true));
-		
+		$response = $project -> __get("response");
+		$this -> assertTrue($response['status'] == 'exito');
 			
 	}
 	

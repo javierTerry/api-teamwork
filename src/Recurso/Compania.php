@@ -3,6 +3,8 @@
 /*
  * 
  */
+ use Masnegocio\teamwork\Recurso\DTO\CompanyDTO;
+ 
 class Compania {
 	use \MNTrait\Comun\MagicMethod;
 	use \MNTrait\Comun\Response;
@@ -20,10 +22,12 @@ class Compania {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('company');
+			//error_log(print_r( (string) $request -> getAll(),true));
 			$compania = json_decode($request -> getAll()) ;
+			
 			if ( count($compania) > 0){
 				foreach ($compania as $key => $objeto) {
-					$companiaDTO = new CompaniaDTO();
+					$companiaDTO = new CompanyDTO();
 					foreach ($companiaDTO as $keyB => $valueB) {
 						$companiaDTO -> $keyB = $objeto -> $keyB;
 					}
@@ -41,25 +45,6 @@ class Compania {
 
     }
  
-}
-
-/**
- * CompaniaDTO
- */
-class CompaniaDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>
