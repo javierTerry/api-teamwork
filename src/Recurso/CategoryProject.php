@@ -1,5 +1,6 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO\ProjectCategoryDTO;
 
 class CategoryProject {
 	use \MNTrait\Comun\MagicMethod;
@@ -21,7 +22,7 @@ class CategoryProject {
 			$project = $request -> getAll() ;
 			if ( count($project) > 0){
 				foreach ($project as $key => $objeto) {
-					$projectDTO = new ProjectCategorieDTO();
+					$projectDTO = new ProjectCategoryDTO();
 					foreach ($projectDTO as $keyB => $valueB) {
 						$projectDTO -> $keyB = $objeto -> $keyB;
 					}
@@ -41,25 +42,6 @@ class CategoryProject {
 
     }
  
-}
-
-/**
- * ProjectCategorieDTO
- */
-class ProjectCategorieDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

@@ -22,6 +22,7 @@ class CategoryProjectTest extends PHPUnit_Framework_TestCase {
 		//var_dump($project -> __get("response"));
 		$project -> obtener();
 		$response = $project -> __get("response");
+		error_log(print_r($response['body'],true));
 		$this -> assertTrue($response['status'] == 'exito');
 			
 	}

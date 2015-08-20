@@ -17,10 +17,11 @@ class PeopleTest extends PHPUnit_Framework_TestCase {
 						,'headers'	=> array()	
 						 );
 		
-		$people = new People();
-		$people -> __set("apiKey", "cat952yellow");
-		$people -> obtener();
-		$response = $people -> __get("response");
+		$project = new Project();
+		$project -> __set("apiKey", "cat952yellow");
+		$project -> obtener();
+		$response = $project -> __get("response");
+		error_log(print_r($response['body'],true));
 		$this -> assertTrue( ($response['status'] == 'exito'));
 		
 			

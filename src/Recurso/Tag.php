@@ -1,7 +1,9 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO;
 
 class Tag {
+	
 	use \MNTrait\Comun\MagicMethod;
 	use \MNTrait\Comun\Response;
 	
@@ -22,11 +24,11 @@ class Tag {
 			error_log(print_r($tags,true));
 			if ( count($project) > 0){
 				foreach ($project as $key => $objeto) {
-					$projectDTO = new ProjectCategorieDTO();
-					foreach ($projectDTO as $keyB => $valueB) {
-						$projectDTO -> $keyB = $objeto -> $keyB;
+					$tagDTO = new TagDTO();
+					foreach ($tagDTO as $keyB => $valueB) {
+						$tagDTO -> $keyB = $objeto -> $keyB;
 					}
-					$this -> response["body"][] = $projectDTO;
+					$this -> response["body"][] = $tagDTO;
 				}
 				
 			}
@@ -40,25 +42,6 @@ class Tag {
 
     }
  
-}
-
-/**
- * ProjectCategorieDTO
- */
-class ProjectCategorieDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

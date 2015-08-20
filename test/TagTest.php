@@ -21,8 +21,10 @@ class TagTest extends PHPUnit_Framework_TestCase {
 		$tag -> __set("apiKey", "cat952yellow");
 		//var_dump($project -> __get("response"));
 		$tag -> obtener();
-		error_log(print_r(json_encode($tag -> __get("response")),true));
+		$response = $tag -> __get("response");
+		error_log(print_r($response,true));
 		
+		$this -> assertTrue($response['message'] === 'exito');
 			
 	}
 	

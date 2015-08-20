@@ -24,8 +24,7 @@ class CompaniaTest extends PHPUnit_Framework_TestCase {
 			$response = $compania -> __get("response");
 			
 			
-			assertTrue($response['status'] == 'exito');
-			assertThat(0, count($response['body']));
+			$this -> assertTrue($response['status'] == 'exito');
 			
 			
 			

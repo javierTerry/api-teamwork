@@ -27,9 +27,10 @@ Así como la URI de nuestro Dashboard, Example (https://personal69.teamwork.com/
 
 Los recursos disponibles son:
 
+* GET /projectCategories.json
 * GET /companies.json
 * GET /people.json
-* GET /projectCategories.json
+
 * GET /projects.json
 * GET /time_entries.json
 
