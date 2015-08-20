@@ -1,6 +1,6 @@
 {
     "name": "javierTerry/Teamwork",
-    "description": "La descripcion de tu mini proyeto",
+    "description": "Gestiona la implementacion ",
     "license": "MIT",
     "keywords": ["masnegocio", "skeleton", "composer"],
     "authors": [
@@ -14,11 +14,13 @@
 		,"javierTerry/MNTrait"			: "dev-master"
 		,"guzzlehttp/guzzle"			: "5.*"
 		,"myabakus/teamworkpm"			: "dev-master"
+		,"slim/pdo"						: "~1.7"
     },
     "require-dev": {
         "phpunit/phpunit"				: "4.0.*"
         ,"slim/slim"					: "2.*"
         ,"phpdocumentor/phpdocumentor"	: "2.*"
+        ,"slim/pdo"						: "~1.7"
     },
     "autoload": {
         "psr-4": {

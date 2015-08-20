@@ -19,9 +19,9 @@ class PeopleTest extends PHPUnit_Framework_TestCase {
 		
 		$people = new People();
 		$people -> __set("apiKey", "cat952yellow");
-		//var_dump($people -> __get("response"));
 		$people -> obtener();
-		error_log(print_r(json_encode($people -> __get("response")),true));
+		$response = $people -> __get("response");
+		$this -> assertTrue( ($response['status'] == 'exito'));
 		
 			
 	}

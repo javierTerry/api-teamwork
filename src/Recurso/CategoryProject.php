@@ -18,8 +18,7 @@ class CategoryProject {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('Category\Project');
-			$project = (string) $request -> getAll() ;
-			error_log(print_r($project,true));
+			$project = $request -> getAll() ;
 			if ( count($project) > 0){
 				foreach ($project as $key => $objeto) {
 					$projectDTO = new ProjectCategorieDTO();
@@ -29,6 +28,8 @@ class CategoryProject {
 					$this -> response["body"][] = $projectDTO;
 				}
 				
+			} else {
+				$this -> response['body'] = array();
 			}
 			$this -> response["message"] = "Listado de companias completo";
 			$this -> response["status"] = "exito";

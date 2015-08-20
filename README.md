@@ -5,7 +5,7 @@ Proyecto integracion teamwork
 
 * Se usa la integracion de un proyecto independiente
 
-Use [packagist](https://github.com/javierTerry/MNTrait.git) - put this in your `composer.json`
+Use [packagist](https://github.com/javierTerry/MNTrait.git) - agrega a tu `composer.json`
 
     {
         "require": {
@@ -49,3 +49,4 @@ Regresa la lista de las compañias disponibles
 ```php
     require 'vendor/autoload.php';
 	class MyTraitTest {
+```	
