@@ -21,7 +21,7 @@ class Task {
     		$request = \TeamWorkPm\Factory::build('Task_List');
 			
 			$tasklist = $request -> getByProject($idProyecto) ;
-			//error_log(print_r($tasklist ,true));
+			error_log(print_r($tasklist ,true));
 			if ( count($tasklist) > 0){
 				foreach ($tasklist as $key => $objeto) {
 					$taskDTO = new TaskDTO();

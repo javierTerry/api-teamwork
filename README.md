@@ -30,17 +30,15 @@ Los recursos disponibles son:
 * GET /projectCategories.json
 * GET /companies.json
 * GET /people.json
-
 * GET /projects.json
 * GET /time_entries.json
-
-
-Los recursos pendientes son:
-* GET /milestones.json?find=[all|completed|incomplete|late|upcoming]
 * GET /projects/{project_id}/tasklists.json
-* GET /tags.json
+* GET /milestones.json?find=[all|completed|incomplete|late|upcoming]
 * GET /expenses.json
-* GET /tasks.json
+Los recursos pendientes son:
+
+* GET /tags.json
+* 
 
 
 ----------------------------------
