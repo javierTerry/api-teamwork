@@ -38,7 +38,6 @@ Los recursos disponibles son:
 Los recursos pendientes son:
 
 * GET /tags.json
-* 
 
 
 ----------------------------------
