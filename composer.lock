@@ -3602,10 +3602,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-<<<<<<< HEAD
-=======
-        "javierterry/mntrait": 20,
->>>>>>> develop
         "myabakus/teamworkpm": 20
     },
     "prefer-stable": false,
