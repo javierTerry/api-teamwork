@@ -12,7 +12,7 @@
     ],
     "require": {
     	"php"							: ">=5.4"
-		,"javierTerry/MNTrait"			: "dev-master"
+		,"javierTerry/MNTrait"			: "dev*"
 		,"guzzlehttp/guzzle"			: "5.*"
 		,"myabakus/teamworkpm"			: "dev-master"
 		,"slim/pdo"						: "~1.7"
