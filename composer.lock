@@ -3527,7 +3527,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "javierterry/mntrait": 20,
+        "javierterry/mntrait": 20, 
         "myabakus/teamworkpm": 20
     },
     "prefer-stable": false,
