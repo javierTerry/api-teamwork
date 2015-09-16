@@ -4,9 +4,13 @@
     "license": "MIT",
     "keywords": ["masnegocio", "skeleton", "composer"],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "minimum-stability": "dev",
 =======
     "minimum-stability"		: "dev"
+>>>>>>> develop
+=======
+    "minimum-stability"		: "dev",
 >>>>>>> develop
     "authors": [
         {

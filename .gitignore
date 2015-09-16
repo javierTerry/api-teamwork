@@ -1,4 +1,7 @@
 #****************** GENERAL  **********
 .project
 vendor/*
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
