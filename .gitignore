@@ -1,4 +1,4 @@
 #****************** GENERAL  **********
 .project
-vendor
-composer.lock
+vendor/*
+
