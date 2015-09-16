@@ -3491,9 +3491,8 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "javierterry/mntrait": 20,
         "myabakus/teamworkpm": 20
     },
     "prefer-stable": false,
