@@ -8,7 +8,7 @@ class ProjectDTO {
 	public $description	= "";
 	public $status		= "";
 	public $createdOn	= "";
-	public $startPage	= "";
+	public $startDate	= "";
 	public $lastChangedOn= "";
 	public $id			= "";
 	public $endDate		= "";
