@@ -40,7 +40,6 @@ class MainCategoryProject {
 				foreach ($response['body'] as $key => $value) {
 					$keys = array();
 					$insertValue= array();
-					#print_r($value);
 					foreach ($value as $keyB => $valueB) {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
@@ -57,7 +56,7 @@ class MainCategoryProject {
 			} else {
 				$this -> log -> addInfo("Sin recursos encontrados", array(basename(__FILE__)."::".__LINE__)) ;
 			}
-		} catch (Excetion $e){
+		} catch (Exception $e){
 			$this -> log -> addInfo("Error de BD", array(basename(__FILE__)."::".__LINE__)) ;
 			$this -> log -> addInfo($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
 		}
