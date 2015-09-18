@@ -44,10 +44,10 @@ class MainTimeEntry {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}
-					print_r($keys);	
+					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
-                    					   ->into('time_ntry')
+                    					   ->into('lkp_time_entries')
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
@@ -56,10 +56,13 @@ class MainTimeEntry {
 			} else {
 				$this -> log -> addInfo("Sin recursos encontrados", array(basename(__FILE__)."::".__LINE__)) ;
 			}
-		} catch (Excetion $e){
-			$this -> log -> addInfo("Error de BD", array(basename(__FILE__)."::".__LINE__)) ;
-			$this -> log -> addInfo($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
-		}
+		} catch (PDOException $e){
+                        $this -> log -> addError("PDOException", array(basename(__FILE__)."::".__LINE__)) ;
+                        $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+        } catch (\Exception $e){
+                $this -> log -> addError(" ", array(basename(__FILE__)."::".__LINE__)) ;
+                $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+        }
 		
 	}
 
