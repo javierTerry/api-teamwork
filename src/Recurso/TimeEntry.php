@@ -1,5 +1,6 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO\TimeDTO;
 
 class TimeEntry {
 	use \MNTrait\Comun\MagicMethod;
@@ -18,21 +19,25 @@ class TimeEntry {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('time');
-			$time = (string) $request -> getAll() ;
+			$time = $request -> getAll() ;
 			error_log(print_r($time,true));
-			if ( count($project) > 0){
-				foreach ($project as $key => $objeto) {
-					$projectDTO = new ProjectCategorieDTO();
-					foreach ($projectDTO as $keyB => $valueB) {
-						$projectDTO -> $keyB = $objeto -> $keyB;
+			/*
+			if ( count($time) > 0){
+				foreach ($time as $key => $objeto) {
+					$timeDTO = new TimeDTO();
+					foreach ($timeDTO as $keyB => $valueB) {
+						$timeDTO -> $keyB = $objeto -> $keyB;
 					}
-					$this -> response["body"][] = $projectDTO;
+					$this -> response["body"][] = $timeDTO;
 				}
 				
 			}
+			 * 
+			 */
 			$this -> response["message"] = "Listado de companias completo";
 			$this -> response["status"] = "exito";
     	} catch ( \Exception $e) {
+			error_log(print_r($e,true));
 			$this -> response["message"] = $e -> getMessage(); 
     	}
 		
@@ -40,25 +45,6 @@ class TimeEntry {
 
     }
  
-}
-
-/**
- * ProjectCategorieDTO
- */
-class ProjectCategorieDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

@@ -1,5 +1,6 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO\PeopleDTO;
 
 class People {
 	use \MNTrait\Comun\MagicMethod;
@@ -17,7 +18,7 @@ class People {
     	
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
-    		$request = \TeamWorkPm\Factory::build('company');
+    		$request = \TeamWorkPm\Factory::build('people');
 			$people = $request -> getAll() ;
 			if ( count($people) > 0){
 				foreach ($people as $key => $objeto) {
@@ -31,7 +32,7 @@ class People {
 			} else {
 				$this -> response['body'] = array();
 			}
-			$this -> response["message"] = "Listado de companias completo";
+			$this -> response["message"] = "Listado de personas completo";
 			$this -> response["status"] = "exito";
     	} catch ( \Exception $e) {
 			$this -> response["message"] = $e -> getMessage(); 
@@ -41,20 +42,6 @@ class People {
 
     }
  
-}
-
-/**
- * PeopleDTO
- */
-class PeopleDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
 }
 
 ?>

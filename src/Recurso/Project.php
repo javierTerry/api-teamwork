@@ -1,5 +1,6 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO\ProjectDTO;
 
 class Project {
 	use \MNTrait\Comun\MagicMethod;
@@ -18,11 +19,10 @@ class Project {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('Project');
-			$project = (string) $request -> getAll() ;
-			error_log(print_r($project,true));
+			$project = $request -> getAll() ;
 			if ( count($project) > 0){
 				foreach ($project as $key => $objeto) {
-					$projectDTO = new ProjectCategorieDTO();
+					$projectDTO = new ProjectDTO();
 					foreach ($projectDTO as $keyB => $valueB) {
 						$projectDTO -> $keyB = $objeto -> $keyB;
 					}
@@ -40,25 +40,6 @@ class Project {
 
     }
  
-}
-
-/**
- * ProjectCategorieDTO
- */
-class ProjectCategorieDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

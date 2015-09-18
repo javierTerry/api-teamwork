@@ -3,9 +3,7 @@
 use Masnegocio\teamwork\Recurso\Milestone;
 
 class MilestoneTest extends PHPUnit_Framework_TestCase {
- 	
-	private $variable = "Hola Mundo";
-	
+
 	/*
 	 * @test
 	 */
@@ -21,7 +19,9 @@ class MilestoneTest extends PHPUnit_Framework_TestCase {
 		$milestone -> __set("apiKey", "cat952yellow");
 		//var_dump($project -> __get("response"));
 		$milestone -> obtener();
-		error_log(print_r(json_encode($milestone -> __get("response")),true));
+		$response = $milestone -> __get("response");
+		error_log(print_r($response['body'],true));
+		$this -> assertTrue($response['status'] == 'exito');
 		
 			
 	}

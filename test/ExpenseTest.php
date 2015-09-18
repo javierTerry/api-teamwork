@@ -1,13 +1,11 @@
 <?php
  // EMpresa\proyecto\carpeta\clase
-use Masnegocio\teamwork\Recurso\CategoryProject;
+use Masnegocio\teamwork\Recurso\Expenses;
 
-class CategoryProjectTest extends PHPUnit_Framework_TestCase {
- 	
-	private $variable = "Hola Mundo";
-	
+class ExpenseTest extends PHPUnit_Framework_TestCase {
+ 		
 	/*
-	 * 
+	 * @test
 	 */
 	public function testObtener(){
 		$autorization = sprintf("BASIC  + window.btoa(%s + :xxx)","asdasdasdas");
@@ -17,15 +15,14 @@ class CategoryProjectTest extends PHPUnit_Framework_TestCase {
 						,'headers'	=> array()	
 						 );
 		
-		$project = new CategoryProject();
-		$project -> __set("apiKey", "cat952yellow");
+		$expense = new Expenses();
+		$expense -> __set("apiKey", "cat952yellow");
 		//var_dump($project -> __get("response"));
-		$project -> obtener();
-		$response = $project -> __get("response");
-		error_log(print_r($response['body'],true));
+		$expense -> obtener();
+		$response = $expense -> __get("response");
+		error_log(print_r($response,true));
+		
 		$this -> assertTrue($response['status'] == 'exito');
-			
+		$this -> assertGreaterThan(count($response['body']), 0);
 	}
-	
- 
 }

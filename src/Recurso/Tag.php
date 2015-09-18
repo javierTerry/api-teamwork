@@ -1,7 +1,9 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
+use Masnegocio\teamwork\Recurso\DTO;
 
 class Tag {
+	
 	use \MNTrait\Comun\MagicMethod;
 	use \MNTrait\Comun\Response;
 	
@@ -14,51 +16,30 @@ class Tag {
     }
 
     public function obtener(){
-    	
     	try {
-    		\TeamWorkPm\Auth::set($this -> apiKey);	
+    		\TeamWorkPm\Auth::set($this-> apiKey);	
     		$request = \TeamWorkPm\Factory::build('tags');
-			$tags = (string) $request -> getAll() ;
-			error_log(print_r($tags,true));
-			if ( count($project) > 0){
-				foreach ($project as $key => $objeto) {
-					$projectDTO = new ProjectCategorieDTO();
-					foreach ($projectDTO as $keyB => $valueB) {
-						$projectDTO -> $keyB = $objeto -> $keyB;
-					}
-					$this -> response["body"][] = $projectDTO;
-				}
-				
-			}
-			$this -> response["message"] = "Listado de companias completo";
+			$tags = $request -> getAll() ;
 			$this -> response["status"] = "exito";
+			
+			if ( count($tags) > 0){
+				foreach ($tags as $key => $objeto) {
+					$tagDTO = new TagDTO();
+					foreach ($tagDTO as $keyB => $valueB) {
+						$tagDTO -> $keyB = $objeto -> $keyB;
+					}
+					$this -> response["body"][] = $tagDTO;
+				}
+				$this -> response["message"] = "Listado de etiquetas completo";
+			} else {
+				$this -> response["body"] = array();	
+				$this -> response["message"] = "No hay etiquetas relacionadas";
+			}
     	} catch ( \Exception $e) {
 			$this -> response["message"] = $e -> getMessage(); 
     	}
-		
-		
-
     }
  
-}
-
-/**
- * ProjectCategorieDTO
- */
-class ProjectCategorieDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
-
-	private $tagid		= "";
- 	private $parent_type= "";
- 	private $parentid	= "";
-	
 }
 
 ?>

@@ -1,8 +1,8 @@
 <?php
  // EMpresa\proyecto\carpeta\clase
-use Masnegocio\teamwork\Recurso\Task;
+use Masnegocio\teamwork\Recurso\Tag;
 
-class TaskTest extends PHPUnit_Framework_TestCase {
+class TagsTest extends PHPUnit_Framework_TestCase {
  		
 	/*
 	 * PRueba para obtener la lista de tareas de un proyecto
@@ -18,12 +18,14 @@ class TaskTest extends PHPUnit_Framework_TestCase {
 						,'config'	=> array()
 						,'headers'	=> array()	
 						 );
+		$tag = new Tag();
+		$tag -> __set("apiKey", "cat952yellow");
+		$tag -> obtener();
 		
-		$task = new Task();
-		
-		$task -> obtener(115994);
-		$response = $task -> __get("response");
-		
+		$response = $tag -> __get("response");
+		error_log(print_r($response,true));
 		$this -> assertTrue($response['status'] == 'exito');
+		$this -> assertGreaterThan(count($response['body']), 0);
+		
 	}
 }

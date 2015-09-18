@@ -3,6 +3,7 @@
     "description": "Gestiona la implementacion ",
     "license": "MIT",
     "keywords": ["masnegocio", "skeleton", "composer"],
+    "minimum-stability"		: "dev",
     "authors": [
         {
             "name": "Christian Hernandez",

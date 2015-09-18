@@ -21,7 +21,7 @@ class TimeEntryTest extends PHPUnit_Framework_TestCase {
 		$time -> __set("apiKey", "cat952yellow");
 		//var_dump($project -> __get("response"));
 		$time -> obtener();
-		error_log(print_r(json_encode($time -> __get("response")),true));
+		error_log(print_r($time -> __get("response"),true));
 		
 			
 	}
