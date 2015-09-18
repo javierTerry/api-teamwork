@@ -44,9 +44,10 @@ class MainTag {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}	
+					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
-                    					   ->into('tag')
+                    					   ->into('lkp_tags')
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();

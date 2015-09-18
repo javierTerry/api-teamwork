@@ -1,6 +1,6 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
-use Masnegocio\teamwork\Recurso\DTO;
+use Masnegocio\teamwork\Recurso\DTO\TagDTO;
 
 class Tag {
 	
@@ -20,6 +20,7 @@ class Tag {
     		\TeamWorkPm\Auth::set($this-> apiKey);	
     		$request = \TeamWorkPm\Factory::build('tags');
 			$tags = $request -> getAll() ;
+			
 			$this -> response["status"] = "exito";
 			
 			if ( count($tags) > 0){
