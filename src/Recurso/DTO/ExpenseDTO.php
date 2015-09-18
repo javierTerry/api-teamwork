@@ -2,17 +2,17 @@
 /**
  * ProjectCategorieDTO
  */
-class TaskDTO {
+class ExpenseDTO {
 	
 	public $invoiceId		="";
+	public $projectId		= "";
 	public $id				= "";
 	public $description		= "";
-	public $projectId		= "";
-	public $milestoneId		= "";
-	public $uncompletedCount= "";
-	public $complete		= "";
-	public $overdueCount	= "";
- 	public $completedCount	= "";
+	public $name			= "";
+	public $companyId		= "";
+	public $createdByUserId	= "";
+	public $date			= "";
+ 	public $cost			= "";
 	
 }//fin class
 ?>
