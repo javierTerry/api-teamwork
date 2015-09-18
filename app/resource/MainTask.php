@@ -35,9 +35,11 @@ class MainTask {
 					#prepare("SELECT id FROM lkp_projects");
 			
 			$result = $qry->execute();
+			//print_r($result -> fetchAll());
+
 			foreach( $result as $key => $value){
 				$idProject = $value['id'];
-			
+				$this -> log -> addInfo("id del proyecto " .$idProject, array(basename(__FILE__)."::".__LINE__)) ;
 			#print_r($result->fetch());
 			$taskApi -> obtener($idProject);
 			$response = $taskApi -> __get("response");
@@ -54,9 +56,34 @@ class MainTask {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}
+	
+					foreach ($insertValue[9] as $keyC => $valueC) {
+						$keysB 			= array();
+						$insertValueB	= array();
+						foreach ($valueC as $keyD => $valueD) {
+							array_push($keysB,$keyD);
+							array_push($insertValueB, ( empty($valueD) || $valueD == '') ? 'null' : $valueD );
+						}
+						$this -> log -> addInfo("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
+						print_r($keysB);
+						print_r($insertValueB);
+						$insertStatement = $pdo->insert($keysB)
+                    					   ->into('lkp_tasks')
+                       						->values($insertValueB);
+                       	print_r($insertStatement);			
+						$insertId = $insertStatement->execute();
+						
+						die();
+					}
+					unset($keys[9]);
+					unset($insertValue[9]);
+					die();
+					//print_r($keys);
+					print_r($insertValue);	
+					//die();
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
-                    					   ->into('lkp_tasks')
+                    					   ->into('lkp_task_lists')
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
