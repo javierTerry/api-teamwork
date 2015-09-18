@@ -47,7 +47,7 @@ class MainProject {
 					
 					$insertValue[8] = $value -> company['id'];
 					$keys[8] = 'companyId';
-					print_r($keys);	
+					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
                     					   ->into('lkp_projects')
