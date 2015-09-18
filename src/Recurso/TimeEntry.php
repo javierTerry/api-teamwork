@@ -20,8 +20,6 @@ class TimeEntry {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('time');
 			$time = $request -> getAll() ;
-			error_log(print_r($time,true));
-			/*
 			if ( count($time) > 0){
 				foreach ($time as $key => $objeto) {
 					$timeDTO = new TimeDTO();
@@ -32,8 +30,6 @@ class TimeEntry {
 				}
 				
 			}
-			 * 
-			 */
 			$this -> response["message"] = "Listado de companias completo";
 			$this -> response["status"] = "exito";
     	} catch ( \Exception $e) {

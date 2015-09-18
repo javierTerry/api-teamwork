@@ -7,7 +7,7 @@ require_once(dirname(dirname(dirname(__FILE__)))."/DataBase/Conexion.php");
 
 use Masnegocio\teamwork\Recurso\Tag;
 
-class MainCategoryProject {	
+class MainTag {	
 
 	/**
 	 * Create a new authentication controller instance.
@@ -44,9 +44,10 @@ class MainCategoryProject {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}	
+					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
-                    					   ->into('tag')
+                    					   ->into('lkp_tags')
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
@@ -55,11 +56,13 @@ class MainCategoryProject {
 			} else {
 				$this -> log -> addInfo("Sin recursos encontrados", array(basename(__FILE__)."::".__LINE__)) ;
 			}
-		} catch (Excetion $e){
-			$this -> log -> addInfo("Error de BD", array(basename(__FILE__)."::".__LINE__)) ;
-			$this -> log -> addInfo($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
-		}
-		
+		} catch (PDOException $e){
+                        $this -> log -> addError("PDOException", array(basename(__FILE__)."::".__LINE__)) ;
+                        $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+        } catch (\Exception $e){
+                $this -> log -> addError(" ", array(basename(__FILE__)."::".__LINE__)) ;
+                $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+        }
 	}
 
 }

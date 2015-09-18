@@ -42,7 +42,7 @@ class MainCompania {
 					$insertValue= array();
 					foreach ($value as $keyB => $valueB) {
 						array_push($keys,$keyB);
-						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
+						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 0 : $valueB );
 					}
 					// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
