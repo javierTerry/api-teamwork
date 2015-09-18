@@ -42,9 +42,9 @@ class MainCategoryProject {
 					$insertValue= array();
 					foreach ($value as $keyB => $valueB) {
 						array_push($keys,$keyB);
-						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
+						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 0 : $valueB );
 					}
-					#print_r($insertValue);	
+					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
                     					   ->into('lkp_categories')
