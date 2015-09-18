@@ -63,8 +63,6 @@ class MainTimeEntry {
                 $this -> log -> addError(" ", array(basename(__FILE__)."::".__LINE__)) ;
                 $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
         }
->>>>>>> 51b358e49217d9782c5a20c72329d031c571484c
-		
 	}
 
 }

@@ -2,3 +2,5 @@
 .project
 vendor/*
 app/logs/
+app/config/*
+app/config/config.php
