@@ -7,7 +7,7 @@ class ProjectCategoryDTO {
 	public $name 		="";
 	public $id			= "";
 	public $type		= "";
-	public $parenId			= "";
+	public $parentId			= "";
 	
 	
 }

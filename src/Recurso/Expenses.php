@@ -21,22 +21,14 @@ class Expenses {
     		$request = \TeamWorkPm\Factory::build('Project/Expenses');
 			
 			$Expenselist = $request -> getAll();
-			//error_log(print_r($Expenselist ,true));
+			
+	
 			$this -> response["status"] = "exito";
 			if ( count($Expenselist) > 0){
 				foreach ($Expenselist as $key => $objeto) {
 					$ExpenseDTO = new ExpenseDTO();
 					foreach ($ExpenseDTO as $keyB => $valueB) {
 						$ExpenseDTO -> $keyB = $objeto -> $keyB;
-					}
-					foreach ($Expenselist[$key]['todoItems'] as $keyC => $valueC) {
-						if ( count($valueC) > 0){
-							$itemDTO = new ItemsDTO();
-							foreach ($itemDTO as $keyD => $valueD) {
-								$itemDTO -> $keyD = $valueC -> $keyD;
-							}
-							$ExpenseDTO -> todoItems[] = $itemDTO;				
-						}	
 					}
 					$this -> response["body"][] = $ExpenseDTO;
 				}

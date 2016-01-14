@@ -18,7 +18,7 @@ class TaskDTO {
 
 class ItemsDTO {
 	
-	public $order 			="";
+	public $projectId		= "";
 	public $createdOn		= "";
 	public $id				= "";
 	public $completed		= "";
@@ -37,19 +37,6 @@ class ItemsDTO {
 	public $priority 		= "";
 	public $responsiblePartyIds= "";
 	public $tasklistLockdownId= "";
-	
-	  
-	 /*
-	
-	public $projectId		= "";
-	public $milestoneId		= "";
-	public $uncompletedCount= "";
-	
-	public $overdueCount	= "";
- 	public $completedCount	= "";
-	public $todoItems		= "";
-	 * 
-	 */
-	
+	public $todoListId		= "";
 }
 ?>

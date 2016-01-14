@@ -2,6 +2,12 @@
 .project
 vendor/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> develop
+=======
+app/logs/
+app/config/*
+app/config/config.php
 >>>>>>> develop

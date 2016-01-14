@@ -3,14 +3,17 @@
  * TimeDTO
  */
 class TimeDTO {
-	
-	public $name 		="";
-	public $industry	= "";
-	public $website		= "";
-	public $country		= "";
-	public $countrycode	= "";
-	public $cid			= "";
-	public $id			= "";
+	  public $projectId		= "";
+      public $minutes 		= "";
+      public $isbillable	= "";
+      public $description 	= "";
+      public $todoListId 	= "";
+      public $companyId 	= "";
+      public $personId 		= "";
+      public $id 			= "";
+      public $date 			= "";
+      public $todoItemId 	= "";
+      public $invoiceNo 	= "";
 	
 }
 ?>
