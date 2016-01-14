@@ -47,4 +47,6 @@ Regresa la lista de las compañias disponibles
 ```php
     require 'vendor/autoload.php';
 	class MyTraitTest {
-```	
+```
+
+Como ejecutar desde un script	
