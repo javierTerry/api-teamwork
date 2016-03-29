@@ -62,9 +62,10 @@ class MainTask {
 								array_push($keysB,$keyD);
 								array_push($insertValueB, ( empty($valueD) || $valueD == '') ? 'null' : $valueD );
 							}
-							$this -> log -> addInfo("Insert lkp_task_lists", array(basename(__FILE__)."::".__LINE__)) ;
+							$this -> log -> addInfo("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
 							$this -> log -> addInfo(print_r($keysB,true), array(basename(__FILE__)."::".__LINE__)) ;
 							$this -> log -> addInfo(print_r($insertValueB,true), array(basename(__FILE__)."::".__LINE__)) ;
+print_r($keysB);
 							$insertStatement = $pdo->insert($keysB)
 	                    					   ->into('lkp_tasks')
 	                       						->values($insertValueB);
