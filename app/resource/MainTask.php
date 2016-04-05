@@ -32,13 +32,13 @@ class MainTask {
 			$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
 			$qry = $pdo -> select(array('id'))
 					-> from('lkp_projects');
-					#prepare("SELECT id FROM lkp_projects");
+					
 			
 			$result = $qry->execute();
 			foreach( $result as $key => $value){
 				$idProject = $value['id'];
 				$this -> log -> addInfo("id del proyecto " .$idProject, array(basename(__FILE__)."::".__LINE__)) ;
-			#print_r($result->fetch());
+			
 			$taskApi -> obtener($idProject);
 			$response = $taskApi -> __get("response");
 
@@ -65,10 +65,9 @@ class MainTask {
 							$this -> log -> addInfo("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
 							$this -> log -> addInfo(print_r($keysB,true), array(basename(__FILE__)."::".__LINE__)) ;
 							$this -> log -> addInfo(print_r($insertValueB,true), array(basename(__FILE__)."::".__LINE__)) ;
-print_r($keysB);
 							$insertStatement = $pdo->insert($keysB)
 	                    					   ->into('lkp_tasks')
-	                       						->values($insertValueB);
+	                       					   ->values($insertValueB);
 							
 							$insertId = $insertStatement->execute();
 						} //fin foreach	

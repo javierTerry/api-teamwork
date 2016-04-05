@@ -33,6 +33,9 @@ class Task {
 							foreach ($itemDTO as $keyD => $valueD) {
 								$itemDTO -> $keyD = $valueC -> $keyD;
 							}
+							print_r($itemDTO);
+							print_r($valueC);
+							//die("task.php");
 							$taskDTO -> todoItems[] = $itemDTO;				
 						}	
 					}
