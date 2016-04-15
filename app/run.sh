@@ -9,7 +9,7 @@ base=$(pwd)
 relative=$(dirname $0)
 path=$relative
 cd $path
-
+date1=$(date -u +"%s")
 ## declare an array variable
 
 declare -a array=(
