@@ -4,11 +4,6 @@ USER_MYSQL="teamuser"
 PSW_MYSQL="t34mus3r"
 BD_NAME="teamwork"
 
-USER_MYSQL="root"
-PSW_MYSQL="pass"
-BD_NAME="teamwork"
-
-date1=$(date -u +"%s")
 echo "INICIANDO PROCESO DE EXTRACCION $BD_NAME - "$(date)
 base=$(pwd)
 relative=$(dirname $0)
@@ -34,7 +29,6 @@ declare -a array=(
 echo "Truncate -> lkp_task_lists "
 mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_task_lists;"
 
-declare -a array=("MainTask" "lkp_tasks")
 
 # get length of an array
 arraylength=${#array[@]}
