@@ -26,66 +26,72 @@ class MainTask {
 	public function obtener(){
 		try{
 
-			$taskApi = new Task();
-			$taskApi -> __set("apiKey", APIKEY_);
-			$this -> log -> addInfo("Inicio flujo de Task", array(basename(__FILE__)."::".__LINE__)) ;
 			$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
 			$qry = $pdo -> select(array('id'))
 					-> from('lkp_projects');
 					
 			
 			$result = $qry->execute();
+			
 			foreach( $result as $key => $value){
 				$idProject = $value['id'];
 				$this -> log -> addInfo("id del proyecto " .$idProject, array(basename(__FILE__)."::".__LINE__)) ;
 			
-			$taskApi -> obtener($idProject);
-			$response = $taskApi -> __get("response");
-
-			if ($response['status'] == "exito" && count($response['body']) > 0 ){
-				$this -> log -> addInfo("Respuesta de api exitosa", array(basename(__FILE__)."::".__LINE__)) ;
+				$taskApi = new Task();
+				$taskApi -> __set("apiKey", APIKEY_);
+				$this -> log -> addInfo("Inicio flujo de Task", array(basename(__FILE__)."::".__LINE__)) ;
+				$taskApi -> obtener($idProject);
+				$response = "";
+				$response = $taskApi -> __get("response");
 				
-				$values = array();
-				$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
-				foreach ($response['body'] as $key => $value) {
-					$keys = array();
-					$insertValue= array();
-					foreach ($value as $keyB => $valueB) {
-						array_push($keys,$keyB);
-						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
-					}
-					if (isset($insertValue[9])){
-						foreach ($insertValue[9] as $keyC => $valueC) {
-							$keysB 			= array();
-							$insertValueB	= array();
-							foreach ($valueC as $keyD => $valueD) {
-								array_push($keysB,$keyD);
-								array_push($insertValueB, ( empty($valueD) || $valueD == '') ? 'null' : $valueD );
-							}
-							$this -> log -> addInfo("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
-							$this -> log -> addInfo(print_r($keysB,true), array(basename(__FILE__)."::".__LINE__)) ;
-							$this -> log -> addInfo(print_r($insertValueB,true), array(basename(__FILE__)."::".__LINE__)) ;
-							$insertStatement = $pdo->insert($keysB)
-	                    					   ->into('lkp_tasks')
-	                       					   ->values($insertValueB);
-							
-							$insertId = $insertStatement->execute();
-						} //fin foreach	
+				if ($response['status'] == "exito" && count($response['body']) > 0 ){
+					$this -> log -> addInfo("Respuesta de api exitosa", array(basename(__FILE__)."::".__LINE__)) ;
+					
+					$values = array();
+					$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
+					foreach ($response['body'] as $key => $value) {
+						$keys = array();
+						$insertValue= array();
+						foreach ($value as $keyB => $valueB) {
+							array_push($keys,$keyB);
+							array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
+						}
+						
+						if (isset($insertValue[9])){
+							foreach ($insertValue[9] as $keyC => $valueC) {
+								$keysB 			= array();
+								$insertValueB	= array();
+								foreach ($valueC as $keyD => $valueD) {
+									array_push($keysB,$keyD);
+									array_push($insertValueB, ( empty($valueD) || $valueD == '') ? 'null' : $valueD );
+								}
+								$this -> log -> addDebug("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
+								$this -> log -> addDebug(print_r($keysB,true), array(basename(__FILE__)."::".__LINE__)) ;
+								$this -> log -> addDebug(print_r($insertValueB,true), array(basename(__FILE__)."::".__LINE__)) ;
+								$insertStatement = $pdo->insert($keysB)
+		                    					   ->into('lkp_tasks')
+		                       					   ->values($insertValueB);
+								
+								$insertId = $insertStatement->execute();
+							} //fin foreach	
+						}
+						
+						unset($keys[9]);
+						unset($insertValue[9]); 
+						 
+						$this -> log -> addDebug(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
+						$insertStatement = $pdo->insert($keys)
+	                    					   ->into('lkp_task_lists')
+	                       						->values($insertValue);
+						
+						$this -> log -> addInfo(print_r($insertValue,true));
+						$insertId = $insertStatement->execute();
+						
 					}
 					
-					unset($keys[9]);
-					unset($insertValue[9]);
-					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
-					$insertStatement = $pdo->insert($keys)
-                    					   ->into('lkp_task_lists')
-                       						->values($insertValue);
-
-					$insertId = $insertStatement->execute();
-					
+				} else {
+					$this -> log -> addInfo("Sin recursos encontrados", array(basename(__FILE__)."::".__LINE__)) ;
 				}
-			} else {
-				$this -> log -> addInfo("Sin recursos encontrados", array(basename(__FILE__)."::".__LINE__)) ;
-			}
 			}//foreach resulset
 		} catch (PDOException $e){
                         $this -> log -> addError("PDOException", array(basename(__FILE__)."::".__LINE__)) ;

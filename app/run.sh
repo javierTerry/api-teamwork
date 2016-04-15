@@ -4,6 +4,9 @@ USER_MYSQL="teamuser"
 PSW_MYSQL="t34mus3r"
 BD_NAME="teamwork"
 
+USER_MYSQL="root"
+PSW_MYSQL="pass"
+BD_NAME="teamwork"
 
 date1=$(date -u +"%s")
 echo "INICIANDO PROCESO DE EXTRACCION $BD_NAME - "$(date)
@@ -12,57 +15,43 @@ relative=$(dirname $0)
 path=$relative
 cd $path
 
-echo "Truncate -> MainCategoryProject "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_categories;"
-echo "Extraccion -> MainCategoryProject.php "
-php -r 'require_once "resource/MainCategoryProject.php"; $obj = new MainCategoryProject(); $obj ->obtener();'
+## declare an array variable
 
-echo "Truncate -> MainCompania "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_companies;"
-echo "Extraccion -> MainCompania.php "
-php -r 'require_once "resource/MainCompania.php"; $obj = new MainCompania(); $obj ->obtener();'
-
-
-echo "Truncate -> MainExpense "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_expenses;"
-echo "Extraccion -> MainExpense.php "
-php -r 'require_once "resource/MainExpense.php"; $obj = new MainExpense(); $obj ->obtener();'
-
-
-echo "Truncate -> MainMilestone "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_milestones;"
-echo "Extraccion -> MainMilestone.php "
-php -r 'require_once "resource/MainMilestone.php"; $obj = new MainMilestone(); $obj ->obtener();'
+declare -a array=(
+				"MainCategoryProject" "lkp_categories"
+				"MainCompania" "lkp_companies"
+				"MainExpense" "lkp_expenses"
+				"MainMilestone" "lkp_milestones"
+				"MainPeople" "lkp_persons"
+				"MainProject" "lkp_projects"
+				"MainTag" "lkp_tags"
+				"MainTask" "lkp_tasks"
+				"MainTimeEntry" "lkp_time_entries"
+								
+				)
 
 
-echo "Truncate -> MainPeople "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_persons;"
-echo "Extraccion -> MainPeople.php "
-php -r 'require_once "resource/MainPeople.php"; $obj = new MainPeople(); $obj ->obtener();'
+echo "Truncate -> lkp_task_lists "
+mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_task_lists;"
 
+declare -a array=("MainTask" "lkp_tasks")
 
-echo "Truncate -> MainProject "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_projects;"
-echo "Extraccion -> MainProject.php "
-php -r 'require_once "resource/MainProject.php"; $obj = new MainProject(); $obj ->obtener();'
+# get length of an array
+arraylength=${#array[@]}
 
-
-echo "Truncate -> MainTag "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_tags;"
-echo "Extraccion -> MainTag.php "
-php -r 'require_once "resource/MainTag.php"; $obj = new MainTag(); $obj ->obtener();'
-
-
-echo "Truncate -> MainTask "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_tasks;"
-echo "Extraccion -> MainTask.php "
-php -r 'require_once "resource/MainTask.php"; $obj = new MainTask(); $obj ->obtener();'
-
-
-echo "Truncate -> MainTimeEntry "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_time_entries;"
-echo "Extraccion -> MainTimeEntry.php "
-php -r 'require_once "resource/MainTimeEntry.php"; $obj = new MainTimeEntry(); $obj ->obtener();'
+# use for loop to read all values and indexes
+for (( i=0; i<${arraylength}; i = i+2 ));
+do
+    nameTable=${array[$i+1]}
+    nameFile=${array[$i]} 
+    echo "Truncate -> $nameTable "
+    mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate "${nameTable}";"
+    echo "Extraccion -> $nameFile.php "
+    php -r 'require_once "resource/'${nameFile}'.php"; $obj = new '${nameFile}'(); $obj ->obtener();'
+    dateTmp=$(date -u +"%s")
+    diffTask=$(($dateTmp-$date1))
+    echo "$nameFile  $(($diffTask / 60)) minutes and $(($diffTask % 60)) seconds elapsed."
+done
 
 date2=$(date -u +"%s")
 diff=$(($date2-$date1))
