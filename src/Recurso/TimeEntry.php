@@ -20,10 +20,7 @@ class TimeEntry {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('time');
 			$time = $request -> getAll() ;
-<<<<<<< HEAD
 			
-=======
->>>>>>> develop
 			if ( count($time) > 0){
 				foreach ($time as $key => $objeto) {
 					$timeDTO = new TimeDTO();

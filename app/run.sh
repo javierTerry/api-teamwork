@@ -4,6 +4,7 @@ USER_MYSQL="teamuser"
 PSW_MYSQL="t34mus3r"
 BD_NAME="teamwork"
 
+
 echo "INICIANDO PROCESO DE EXTRACCION $BD_NAME - "$(date)
 base=$(pwd)
 relative=$(dirname $0)
