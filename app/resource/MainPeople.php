@@ -4,6 +4,7 @@ require_once(dirname(dirname(dirname(__FILE__)))."/vendor/autoload.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/config.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/Logger.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/DataBase/Conexion.php");
+require_once(dirname(dirname(dirname(__FILE__)))."/app/resource/rel/Tags.php");
 
 use Masnegocio\teamwork\Recurso\People;
 
@@ -51,6 +52,7 @@ class MainPeople {
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
+					$this -> insertRel($value);
 					
 				}
 			} else {
@@ -64,6 +66,19 @@ class MainPeople {
                 $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
         }
 		
-	}
+	}//fin obtener()
+	
+	private function insertRel($value){
+		try{
+			$this -> log -> addInfo("Inicia funcion MainPeople::insertRel() ");
+			$tags = new Tags();
+			$rel = array(null,"lkp_persons", $value -> id);
+			$tags -> insert($rel);	
+		} catch (\Excetion $e){
+			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+		}
+		
+		
+	}//fin insertRel()
 
 }

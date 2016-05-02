@@ -1,7 +1,12 @@
 #!/bin/bash
-# Script que proporciona una manera practica de resolver las rutas del rpoeucto api.$BD_NAMEi
-USER_MYSQL="teamuser"
-PSW_MYSQL="t34mus3r"
+# Script que proporciona una manera practica de resolver las rutas del proyecto api.teamwork
+#Ejemplo de ejecucion manual
+#php -r 'require_once "resource/'${nameFile}'.php"; $obj = new '${nameFile}'(); $obj ->obtener();' 
+
+
+
+USER_MYSQL="root"
+PSW_MYSQL="pass"
 BD_NAME="teamwork"
 
 
@@ -30,6 +35,17 @@ declare -a array=(
 echo "Truncate -> lkp_task_lists "
 mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_task_lists;"
 
+echo "Truncate -> rel_tasks "
+mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate rel_tasks;"
+
+
+echo "Truncate -> rel_tags "
+mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate rel_tags;"
+
+echo "Truncate -> rel_tags "
+mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate rel_categories;"
+
+
 
 # get length of an array
 arraylength=${#array[@]}
@@ -48,8 +64,8 @@ do
     echo "$nameFile  $(($diffTask / 60)) minutes and $(($diffTask % 60)) seconds elapsed."
 done
 
+
+echo "FINALIZANDO PROCESO DE EXTRACCION - "$(date)
 date2=$(date -u +"%s")
 diff=$(($date2-$date1))
 echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed."
-
-echo "FINALIZANDO PROCESO DE EXTRACCION - "$(date)

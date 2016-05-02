@@ -1,6 +1,7 @@
 <?php 
 
 require_once(dirname(dirname(dirname(__FILE__)))."/vendor/autoload.php");
+require_once(dirname(dirname(dirname(__FILE__)))."/app/resource/rel/Tags.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/config.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/Logger.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/DataBase/Conexion.php");
@@ -45,12 +46,13 @@ class MainCompania {
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 0 : $valueB );
 					}
 					// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
+					$this -> log -> addDebug(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
                     					   ->into('lkp_companies')
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
+					$this -> insertRel($value);
 					
 				}
 			}
@@ -63,6 +65,20 @@ class MainCompania {
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
 		}
 		
-	}
+	}//fin obtener()
+	
+	private function insertRel($value){
+		try{
+			$this -> log -> addInfo("Inicia funcion MainCompania::nsertRel() ");
+			$tags = new Tags();
+			$rel = array(null,"lkp_companies", $value -> id);
+			$tags -> insert($rel);	
+		} catch (\Excetion $e){
+			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+		}
+		
+		
+	}//fin insertRel()
+	
 
 }

@@ -4,6 +4,7 @@ require_once(dirname(dirname(dirname(__FILE__)))."/vendor/autoload.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/config.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/config/Logger.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/DataBase/Conexion.php");
+require_once(dirname(dirname(dirname(__FILE__)))."/app/resource/rel/Categories.php");
 
 use Masnegocio\teamwork\Recurso\Project;
 
@@ -54,6 +55,7 @@ class MainProject {
                        						->values($insertValue);
 
 					$insertId = $insertStatement->execute();
+					$this -> insertRel($value);
 					
 				}
 			} else {
@@ -67,7 +69,20 @@ class MainProject {
                 $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
         }
 		
-	}
+	}//fin obtener()
+	
+	private function insertRel($value){
+		try{
+			$this -> log -> addInfo("Inicia funcion MainProject::insertRel() ");
+			$categories = new Categories();
+			$rel = array(null,"lkp_projects", $value -> id);
+			$categories -> insert($rel);	
+		} catch (\Excetion $e){
+			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
+		}
+		
+		
+	}//fin insertRel()
 
 }
 

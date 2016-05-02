@@ -22,7 +22,6 @@ class Compania {
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
     		$request = \TeamWorkPm\Factory::build('company');
-			//error_log(print_r( (string) $request -> getAll(),true));
 			$compania = json_decode($request -> getAll()) ;
 			
 			if ( count($compania) > 0){

@@ -23,15 +23,14 @@ class Conexion
         @return Instance
     */
     public static function getInstance() {
+    	
         if(!self::$instance) { // If no instance then make one
-            self::$instance = new self();
+            self::$instance = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_);
         }
-        print_r("return conexion \n");
         return self::$instance;
     }
     // Constructor
     private function __construct() {
-        print_r("creado conexion");
         self::$instance = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_);
     }
 
