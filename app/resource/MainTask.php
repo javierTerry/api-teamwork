@@ -113,7 +113,7 @@ class MainTask {
 		try{
 			$this -> log -> addInfo("Inicia funcion MainTask:insertRel() ");
 			$tags = new Tags();
-			$rel = array(null,"lkp_tasks", $value -> id);
+			$rel = array(0,"lkp_tasks", $value -> id);
 			$tags -> insert($rel);	
 		} catch (\Excetion $e){
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
@@ -126,7 +126,7 @@ class MainTask {
 		try{
 			$this -> log -> addInfo("Inicia funcion MainTask:insertRelTask() ");
 			$taks = new RelTaks();
-			$rel = array(null,"lkp_tasks", $value -> id);
+			$rel = array(0,"lkp_tasks", $value -> id);
 			$taks -> insert($rel);	
 		} catch (\Excetion $e){
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;

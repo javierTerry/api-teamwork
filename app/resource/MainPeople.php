@@ -72,7 +72,7 @@ class MainPeople {
 		try{
 			$this -> log -> addInfo("Inicia funcion MainPeople::insertRel() ");
 			$tags = new Tags();
-			$rel = array(null,"lkp_persons", $value -> id);
+			$rel = array(0,"lkp_persons", $value -> id);
 			$tags -> insert($rel);	
 		} catch (\Excetion $e){
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;

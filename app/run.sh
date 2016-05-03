@@ -5,8 +5,8 @@
 
 
 
-USER_MYSQL="root"
-PSW_MYSQL="pass"
+USER_MYSQL="teamuser"
+PSW_MYSQL="t34mus3r"
 BD_NAME="teamwork"
 
 

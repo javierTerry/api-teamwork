@@ -19,7 +19,7 @@ class RelTaks {
 		$this -> log = LoggingHelper::getLogger();
 	}
 	
-	public function insert($values = array(null, "test", "1")){
+	public function insert($values = array(0, "test", "1")){
 		
 		$this -> log -> addDebug("insert rel", array(basename(__FILE__)."::".__LINE__))	 ;
 		$insertStatement = $this -> pdo -> insert(array("taskid", "parent_type", "parentid"))

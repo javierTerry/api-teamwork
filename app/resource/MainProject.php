@@ -75,7 +75,7 @@ class MainProject {
 		try{
 			$this -> log -> addInfo("Inicia funcion MainProject::insertRel() ");
 			$categories = new Categories();
-			$rel = array(null,"lkp_projects", $value -> id);
+			$rel = array(0,"lkp_projects", $value -> id);
 			$categories -> insert($rel);	
 		} catch (\Excetion $e){
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;

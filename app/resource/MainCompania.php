@@ -46,6 +46,7 @@ class MainCompania {
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 0 : $valueB );
 					}
 					// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
+					$this -> log -> addDebug(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addDebug(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)
                     					   ->into('lkp_companies')
@@ -71,7 +72,7 @@ class MainCompania {
 		try{
 			$this -> log -> addInfo("Inicia funcion MainCompania::nsertRel() ");
 			$tags = new Tags();
-			$rel = array(null,"lkp_companies", $value -> id);
+			$rel = array(0,"lkp_companies", $value -> id);
 			$tags -> insert($rel);	
 		} catch (\Excetion $e){
 			$this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
