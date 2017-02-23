@@ -3,15 +3,6 @@
     "description": "Gestiona la implementacion ",
     "license": "MIT",
     "keywords": ["masnegocio", "skeleton", "composer"],
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "minimum-stability": "dev",
-=======
-    "minimum-stability"		: "dev"
->>>>>>> develop
-=======
-    "minimum-stability"		: "dev",
->>>>>>> develop
     "authors": [
         {
             "name": "Christian Hernandez",
@@ -20,7 +11,7 @@
     ],
     "require": {
     	"php"							: ">=5.4"
-		,"javierTerry/MNTrait"			: "dev*"
+		,"javierTerry/MNTrait"			: "master"
 		,"guzzlehttp/guzzle"			: "5.*"
 		,"myabakus/teamworkpm"			: "dev-master"
 		,"slim/pdo"						: "~1.7"
