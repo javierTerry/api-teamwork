@@ -18,9 +18,15 @@ class People {
     	
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
-    		$request = \TeamWorkPm\Factory::build('people');
-			$people = $request -> getAll() ;
-			if ( count($people) > 0){
+    		
+			$i = 1;
+			$countPeople = 1;
+			while ( $countPeople ) {
+				$request = \TeamWorkPm\Factory::build('people');
+				$people = $request -> getAll(200,$i) ;
+				$i++;
+				$countPeople = count($people);
+				
 				foreach ($people as $key => $objeto) {
 					$peopleDTO = new PeopleDTO();
 					foreach ($peopleDTO as $keyB => $valueB) {
@@ -29,19 +35,14 @@ class People {
 					$this -> response["body"][] = $peopleDTO;
 				}
 				
-			} else {
-				$this -> response['body'] = array();
+				
+				$this -> response["message"] = "Listado de personas completo";
+				$this -> response["status"] = "exito";
 			}
-			$this -> response["message"] = "Listado de personas completo";
-			$this -> response["status"] = "exito";
-    	} catch ( \Exception $e) {
+	    } catch ( \Exception $e) {
 			$this -> response["message"] = $e -> getMessage(); 
-    	}
-		
-		
-
-    }
- 
+	    }
+	}
 }
 
 ?>
