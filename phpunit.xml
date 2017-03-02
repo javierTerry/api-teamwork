@@ -15,18 +15,48 @@
 	        <testsuite name="Tarjeta">
 	            <directory>./TarjetaTest.php</directory>
 	        </testsuite>
-	    -->
+	    
 	        <testsuite name="People">
 	            <directory>./test/PeopleTest.php</directory>
-	        </testsuite>	
-	    </testsuites>
-	   
+	        </testsuite>
+		
+			<testsuite name="Task">
+	            <directory>./test/ProjectTest.php</directory>
+	        </testsuite>
+
+	         <testsuite name="Task">
+	            <directory>./test/TaskTest.php</directory>
+	        </testsuite>
+
+
+
+	        <testsuite name="TaskList">
+	            <directory>./test/TaskListtTest.php</directory>
+	        </testsuite>
+	    -->
+	         <testsuite name="Task">
+	            <directory>./test/TaskTest.php</directory>
+	        </testsuite>
+	</testsuites>
+	<groups>
+    	<!--
+	  <include>
+	    <group>na</group>
+	  </include>
+	-->
+	  <exclude>
+	    <group>ignored</group>
+	  </exclude>
+	</groups>
      
-    
     <filter>
         <whitelist>
             <directory suffix="Test.php">./</directory>
         </whitelist>
-        <exclude></exclude>
+        <exclude>
+        	 <group>ignored</group>
+        </exclude>
     </filter>
+
+    
 </phpunit>

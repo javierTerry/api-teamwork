@@ -10,20 +10,12 @@ class ProjectTest extends PHPUnit_Framework_TestCase {
 	 * @test
 	 */
 	public function testObtener(){
-		$autorization = sprintf("BASIC  + window.btoa(%s + :xxx)","asdasdasdas");
-		$options = array(
-						'body' 		=> array()
-						,'config'	=> array()
-						,'headers'	=> array()	
-						 );
 		
-		$project = new Project();
-		$project -> __set("apiKey", "cat952yellow");
-		//var_dump($project -> __get("response"));
-		$project -> obtener();
-		error_log(print_r(json_encode($project -> __get("response")),true));
-		
-			
+		\TeamWorkPm\Auth::set('beer398ankle');	
+		$request = \TeamWorkPm\Factory::build('Project');
+		$request -> getAll();
+
+		error_log(print_r(count($request -> getAll()),true));
 	}
 	
  

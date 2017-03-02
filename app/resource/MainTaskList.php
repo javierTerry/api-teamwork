@@ -7,9 +7,9 @@ require_once(dirname(dirname(dirname(__FILE__)))."/DataBase/Conexion.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/resource/rel/Tags.php");
 require_once(dirname(dirname(dirname(__FILE__)))."/app/resource/rel/Taks.php");
 
-use Masnegocio\teamwork\Recurso\Task;
+use Masnegocio\teamwork\Recurso\TaskList;
 
-class MainTask {	
+class MainTaskList {	
 
 	/**
 	 * Create a new authentication controller instance.
@@ -30,19 +30,19 @@ class MainTask {
 
 			$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
 			$qry = $pdo -> select(array('id'))
-					-> from('lkp_task_lists');
+					-> from('lkp_projects');
 					
 			
 			$result = $qry->execute();
 			
-			foreach( $result as $key => $value){	
-				$id = $value['id'];
-				$this -> log -> addInfo("id del lista de tareas " .$id, array(basename(__FILE__)."::".__LINE__)) ;
-				
-				$taskApi = new Task();
+			foreach( $result as $key => $value){
+				$idProject = $value['id'];
+				$this -> log -> addInfo("id del proyecto " .$idProject, array(basename(__FILE__)."::".__LINE__)) ;
+			
+				$taskApi = new TaskList();
 				$taskApi -> __set("apiKey", APIKEY_);
 				$this -> log -> addInfo("Inicio flujo de Task", array(basename(__FILE__)."::".__LINE__)) ;
-				$taskApi -> obtener($id);
+				$taskApi -> obtener($idProject);
 				$response = "";
 				$response = $taskApi -> __get("response");
 				
@@ -51,33 +51,48 @@ class MainTask {
 					
 					$values = array();
 					$pdo = new \Slim\PDO\Database(BD_DNS_, BD_USER_, BD_PWD_); //Conexion::getInstance();
-
-					$this -> log -> addInfo(print_r(count($response['body']),true), array(basename(__FILE__)."::".__LINE__)) ;
-			
-					foreach ($response['body'] as $keyB => $valueB) {
+					foreach ($response['body'] as $key => $value) {
 						$keys = array();
 						$insertValue= array();
-						
-						foreach ($valueB as $keyC => $valueC) {
-							array_push($keys,$keyC);
-							array_push($insertValue, ( empty($valueC) || $valueC == '') ? 0 : $valueC );
+						foreach ($value as $keyB => $valueB) {
+							array_push($keys,$keyB);
+							array_push($insertValue, ( empty($valueB) || $valueB == '') ? 0 : $valueB );
 						}
-						$insertValue[1] = str_replace("Z", "", $insertValue[1]);
-						$insertValue[14] = str_replace("Z", "", $insertValue[14]);
-						$insertValue[15] = ( strtotime($insertValue[15]) ) ?  $insertValue[15] : '20150101' ;
-						$insertValue[10] = ( strtotime($insertValue[10]) ) ?  $insertValue[10] : '20150101' ;
-						$insertValue[8] = ( strtotime($insertValue[8]) ) ?  $insertValue[8] : '20150101' ;
-						$this -> log -> addDebug(print_r($insertValue[15],true), array(basename(__FILE__)."::".__LINE__)) ;
-						$this -> log -> addDebug(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
-						$this -> log -> addDebug(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
+						/*
+						if (isset($insertValue[9])){
+							foreach ($insertValue[9] as $keyC => $valueC) {
+								$keysB 			= array();
+								$insertValueB	= array();
+								foreach ($valueC as $keyD => $valueD) {
+									array_push($keysB,$keyD);
+									array_push($insertValueB, ( empty($valueD) || $valueD == '') ? 'null' : $valueD );
+								}
+								$this -> log -> addDebug("Insert lkp_tasks", array(basename(__FILE__)."::".__LINE__)) ;
+								$this -> log -> addDebug(print_r($keysB,true), array(basename(__FILE__)."::".__LINE__)) ;
+								$this -> log -> addDebug(print_r($insertValueB,true), array(basename(__FILE__)."::".__LINE__)) ;
+								$insertStatement = $pdo->insert($keysB)
+		                    					   ->into('lkp_tasks')
+		                       					   ->values($insertValueB);
+								
+								$insertId = $insertStatement->execute();
+								$this -> insertRel($valueC);
+								
+								
+							} //fin foreach	
+						}
+						*/
 						
+						unset($keys[9]);
+						unset($insertValue[9]); 
+						 
+						$this -> log -> addDebug(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 						$insertStatement = $pdo->insert($keys)
-	                    					   ->into('lkp_tasks')
+	                    					   ->into('lkp_task_lists')
 	                       						->values($insertValue);
 						
-						$this -> log -> addInfo(print_r($insertStatement,true));
+						$this -> log -> addInfo(print_r($insertValue,true));
 						$insertId = $insertStatement->execute();
-						//$this -> insertRelTask($value);
+						$this -> insertRelTask($value);
 						
 					}
 					

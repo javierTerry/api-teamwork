@@ -1,22 +1,9 @@
-<?php namespace Masnegocio\Recurso\DTO;
+<?php namespace Masnegocio\teamwork\Recurso\DTO;
 /**
  * ProjectCategorieDTO
  */
-class TaskDTO {
-	
-	public $name 			="";
-	public $id				= "";
-	public $description		= "";
-	public $projectId		= "";
-	public $milestoneId		= "";
-	public $uncompletedCount= "";
-	public $complete		= "";
-	public $overdueCount	= "";
- 	public $completedCount	= "";
-	
-}
 
-class ItemsDTO {
+class TasksDTO {
 	
 	public $projectId		= "";
 	public $createdOn		= "";

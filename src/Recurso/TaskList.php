@@ -1,10 +1,10 @@
 <?php namespace Masnegocio\teamwork\Recurso;
 
-use Masnegocio\teamwork\Recurso\DTO\TasksDTO;
-
-class Task {
+use Masnegocio\teamwork\Recurso\DTO\TaskDTO;
+class TaskList {
 	use \MNTrait\Comun\MagicMethod;
 	use \MNTrait\Comun\Response;
+	
 	protected $request	= null;
 	private $response	= array();
 	private $apiKey		="";
@@ -13,26 +13,20 @@ class Task {
     	$this -> response = $this -> __response(); 
     }
 
-    public function obtener($id){
+    public function obtener($idProyecto){
     	
     	try {
     		\TeamWorkPm\Auth::set($this -> apiKey);	
-    		$request = \TeamWorkPm\Factory::build('task');
+    		$request = \TeamWorkPm\Factory::build('Task_List');
 			
-			$i = 1;
-			$flagRun = 250;
-			while ( $flagRun > 249) {
-				$tasklist = $taskLists = $request -> getByTaskList($id, 'all', array('page' => $i));
-				$flagRun =count($tasklist);
-				error_log($i);
-				$i++;
-
+			$tasklist = $request -> getByProject($idProyecto,array('status' =>'all')) ;
+			if ( count($tasklist) > 0){
 				foreach ($tasklist as $key => $objeto) {
-					$itemDTO = new TasksDTO();
-					foreach ($itemDTO as $keyA => $valueA) {
-						$itemDTO -> $keyA = $objeto -> $keyA;
-					}//fin foreach
-					$this -> response["body"][] = $itemDTO;
+					$taskDTO = new TaskDTO();
+					foreach ($taskDTO as $keyB => $valueB) {
+						$taskDTO -> $keyB = $objeto -> $keyB;
+					}
+					$this -> response["body"][] = $taskDTO;
 					
 				}
 			}
@@ -41,6 +35,7 @@ class Task {
     	} catch ( \Exception $e) {
 			$this -> response["message"] = $e -> getMessage(); 
     	}
+
     }
 }
 
