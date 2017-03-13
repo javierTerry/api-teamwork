@@ -92,7 +92,10 @@ class MainTask {
                 $this -> log -> addError(" ", array(basename(__FILE__)."::".__LINE__)) ;
                 $this -> log -> addError($e -> getMessage(), array(basename(__FILE__)."::".__LINE__)) ;
         }
-		
+        $insertStatement = null;
+        $pdo = null;
+		$result = null;
+
 	}//fin obtener()
 	
 	private function insertRel($value){
