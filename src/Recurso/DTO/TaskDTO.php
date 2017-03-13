@@ -1,4 +1,4 @@
-<?php namespace Masnegocio\Recurso\DTO;
+<?php namespace Masnegocio\teamwork\Recurso\DTO;
 /**
  * ProjectCategorieDTO
  */

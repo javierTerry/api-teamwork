@@ -45,6 +45,10 @@ class MainPeople {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}
+					$insertValue[5] = is_null( $insertValue[5] ) ?  $insertValue[5] : '2017-01-01 00:00:00';
+					$insertValue[5] = str_replace("Z", "", $insertValue[5]);
+					$insertValue[8] = str_replace("Z", "", $insertValue[8]);
+
 					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)

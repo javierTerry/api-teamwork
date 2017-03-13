@@ -33,9 +33,14 @@
 	        <testsuite name="TaskList">
 	            <directory>./test/TaskListtTest.php</directory>
 	        </testsuite>
-	    -->
-	         <testsuite name="Task">
+
+	        <testsuite name="Task">
 	            <directory>./test/TaskTest.php</directory>
+	        </testsuite>
+	    -->
+	         
+	        <testsuite name="Expenses">
+	            <directory>./test/ExpenseTest.php</directory>
 	        </testsuite>
 	</testsuites>
 	<groups>

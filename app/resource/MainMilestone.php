@@ -44,6 +44,10 @@ class MainMilestone {
 						array_push($keys,$keyB);
 						array_push($insertValue, ( empty($valueB) || $valueB == '') ? 'null' : $valueB );
 					}
+					$insertValue[4] = str_replace("Z", "", $insertValue[4]);
+					$insertValue[7] = str_replace("Z", "", $insertValue[7]);
+
+
 					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)

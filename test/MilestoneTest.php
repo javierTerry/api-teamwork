@@ -1,30 +1,39 @@
 <?php
- // EMpresa\proyecto\carpeta\clase
-use Masnegocio\teamwork\Recurso\Milestone;
 
-class MilestoneTest extends PHPUnit_Framework_TestCase {
+use Masnegocio\teamwork\Recurso\Task;
 
+class TaskTest extends PHPUnit_Framework_TestCase {
+ 		
 	/*
-	 * @test
+	 * PRueba para obtener la lista de tareas de un proyecto
+     *
+	 * Con esta prueba se evalua elresultado obtenga valores 
+	 * @author Christian Hernandez
+	 * @group ignored
 	 */
 	public function testObtener(){
-		$autorization = sprintf("BASIC  + window.btoa(%s + :xxx)","asdasdasdas");
-		$options = array(
-						'body' 		=> array()
-						,'config'	=> array()
-						,'headers'	=> array()	
-						 );
-		
-		$milestone = new Milestone();
-		$milestone -> __set("apiKey", "cat952yellow");
-		//var_dump($project -> __get("response"));
-		$milestone -> obtener();
-		$response = $milestone -> __get("response");
-		error_log(print_r($response['body'],true));
-		$this -> assertTrue($response['status'] == 'exito');
-		
-			
+		\TeamWorkPm\Auth::set('beer398ankle');	
+		$request = \TeamWorkPm\Factory::build('task');
+		//$taskLists = $request -> getByTaskList(426075);
+		$taskLists = $request -> getByTaskList(426075);
+		//426075
+		//503702 
+		$conteo = count($taskLists);
+		$this->assertGreaterThan(251,$conteo);
+
 	}
-	
- 
+	/*
+	 * @depends testObtener
+	 */
+	public function testPages(){
+		\TeamWorkPm\Auth::set('beer398ankle');	
+		$request = \TeamWorkPm\Factory::build('task');
+		//$taskLists = $request -> getByTaskList(426075);
+		$taskLists = $request -> getByTaskList(426075, 'all', array('page' => 2));
+		//426075
+		//503702 
+		$conteo = count($taskLists);
+		$this->assertGreaterThan(0,$conteo);
+	}
 }
+p

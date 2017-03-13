@@ -48,6 +48,15 @@ class MainProject {
 					
 					$insertValue[8] = $value -> company['id'];
 					$keys[8] = 'companyId';
+
+					$insertValue[3] = str_replace("Z", "", $insertValue[3]);
+					$insertValue[4] = is_null($insertValue[4]) ?  $insertValue[4] : '2017-01-01 00:00:00';
+					$insertValue[4] = str_replace("Z", "", $insertValue[4]);
+					$insertValue[5] = str_replace("Z", "", $insertValue[5]);
+					$insertValue[7] = is_null($insertValue[7]) ?  $insertValue[7] : '2017-01-01 00:00:00';
+					$insertValue[7] = str_replace("Z", "", $insertValue[7]);
+
+
 					$this -> log -> addInfo(print_r($keys,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$this -> log -> addInfo(print_r($insertValue,true), array(basename(__FILE__)."::".__LINE__)) ;
 					$insertStatement = $pdo->insert($keys)

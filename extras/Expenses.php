@@ -9,6 +9,6 @@ class People extends \TeamWorkPm\Rest\Model
      */
     public function getAll()
     {
-        return $this->rest->get("/expenses");
+        return $this->rest->get("expenses");
     }    
 }

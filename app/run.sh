@@ -5,8 +5,8 @@
 
 
 
-USER_MYSQL="teamuser"
-PSW_MYSQL="t34mus3r"
+USER_MYSQL="root"
+PSW_MYSQL="pass"
 BD_NAME="teamwork"
 
 
@@ -26,14 +26,13 @@ declare -a array=(
 				"MainPeople" "lkp_persons"
 				"MainProject" "lkp_projects"
 				"MainTag" "lkp_tags"
+				"MainTaskList" "lkp_task_lists"
 				"MainTask" "lkp_tasks"
 				"MainTimeEntry" "lkp_time_entries"
+				
 								
 				)
 
-
-echo "Truncate -> lkp_task_lists "
-mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate lkp_task_lists;"
 
 echo "Truncate -> rel_tasks "
 mysql -u $USER_MYSQL -p$PSW_MYSQL $BD_NAME -e "truncate rel_tasks;"
